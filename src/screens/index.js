@@ -1,5 +1,4 @@
 import LoginScreen from './LoginScreen';
+import DashboardScreen from './DashboardScreen';
 
-// import TestContext from './TestContext';
-
-export {LoginScreen};
+export {LoginScreen, DashboardScreen};

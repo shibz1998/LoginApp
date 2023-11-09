@@ -5,14 +5,13 @@
  * @format
  */
 import React from 'react';
-
-import {LoginScreen} from './src/screens';
 import {SafeAreaView, Text, View} from 'react-native';
+
+import {LoginScreen, DashboardScreen} from './src/screens';
 
 function App() {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Text>Hello</Text>
       <LoginScreen />
     </SafeAreaView>
   );

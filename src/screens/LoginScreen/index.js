@@ -1,24 +1,34 @@
-import React, {useState, createContext, useContext, memo} from 'react';
-import {View, Text, Button, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, Button, TouchableOpacity} from 'react-native';
 
 const LoginScreen = () => {
-  const [user, setUser] = useState('jessie');
-
-  console.log('Login Screen rendering');
   return (
-    <View style={{backgroundColor: 'yellow', margin: 5}}>
-      <Text>Welcome {user}</Text>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Login screen</Text>
 
       <TextInput
-        style={{backgroundColor: 'pink', margin: 10}}
-        placeholder="Enter Username"
-        value={user}
-        onChangeText={ct => {
-          setUser(ct);
+        style={{
+          backgroundColor: 'yellow',
+          margin: 10,
+          padding: 10,
+          width: '70%',
         }}
+        placeholder="Enter UserName"
+        value={''}
       />
 
-      <Button title="Update on child component" onPress={''} />
+      <TextInput
+        style={{
+          backgroundColor: 'yellow',
+          margin: 10,
+          padding: 10,
+          width: '70%',
+        }}
+        placeholder="Enter Password"
+        value={''}
+      />
+
+      <Button title="Login" onPress={''} />
     </View>
   );
 };
