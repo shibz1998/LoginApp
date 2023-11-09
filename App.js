@@ -4,19 +4,21 @@
  *
  * @format
  */
-import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-
-import {LoginScreen, DashboardScreen} from './src/screens';
-import Navigator from './src/navigator';
 
 import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
+import {LoginScreen, DashboardScreen} from './src/screens';
+import Navigator from './src/navigator';
+import {UserContextProvider} from './src/contexts/UserContext'; //exported to use it around the entire child components
 
 function App() {
   return (
-    <NavigationContainer>
-      <Navigator />
-    </NavigationContainer>
+    <UserContextProvider>
+      <NavigationContainer>
+        <Navigator />
+      </NavigationContainer>
+    </UserContextProvider>
   );
 }
 

@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen, DashboardScreen} from '../screens';
 
-const Navigator = () => {
-  const Stack = createNativeStackNavigator();
+import UserContext from '../contexts/UserContext';
+const Stack = createNativeStackNavigator();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+const Navigator = () => {
+  const {user} = useContext(UserContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const authStack = () => {
     return (
