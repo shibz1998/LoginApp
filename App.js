@@ -8,12 +8,15 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
 import {LoginScreen, DashboardScreen} from './src/screens';
+import Navigator from './src/navigator';
+
+import {NavigationContainer} from '@react-navigation/native';
 
 function App() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <LoginScreen />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
   );
 }
 
