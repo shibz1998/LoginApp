@@ -30,7 +30,7 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>{isLoggedIn ? mainStack() : authStack()}</Stack.Navigator>
+    <Stack.Navigator>{!isLoggedIn ? mainStack() : authStack()}</Stack.Navigator>
   );
 };
 
