@@ -23,6 +23,11 @@ const DashboardScreen = props => {
           setUser(false);
         }}
       />
+
+      <Button
+        title="Api Screen"
+        onPress={() => props.navigation.navigate('ApiScreen')}
+      />
     </View>
   );
 };

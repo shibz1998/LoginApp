@@ -2,7 +2,12 @@ import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoginScreen, DashboardScreen, SignupScreen} from '../screens';
+import {
+  LoginScreen,
+  DashboardScreen,
+  SignupScreen,
+  ApiScreen,
+} from '../screens';
 
 import UserContext from '../contexts/UserContext';
 const Stack = createNativeStackNavigator();
@@ -27,6 +32,7 @@ const Navigator = () => {
         <Stack.Screen
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
+        <Stack.Screen name="ApiScreen" component={ApiScreen}></Stack.Screen>
       </Stack.Group>
     );
   };
