@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View} from 'react-native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -8,12 +8,24 @@ import {
   SignupScreen,
   ApiScreen,
 } from '../screens';
-
+import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  const {user} = useContext(UserContext);
+  // const {user} = useContext(UserContext);
+  const user = useSelector(state => state.user);
+  useEffect(() => {
+    setIsUserLoggedIn(
+      user?.data?.accessToken &&
+        typeof user?.data?.accessToken === 'string' &&
+        user?.data?.accessToken.length > 50
+        ? true
+        : false,
+    );
+  }, [user]);
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(user?.data?.id);
 
   const authStack = () => {
     return (
@@ -37,7 +49,11 @@ const Navigator = () => {
     );
   };
 
-  return <Stack.Navigator>{user ? mainStack() : authStack()}</Stack.Navigator>;
+  return (
+    <Stack.Navigator>
+      {isUserLoggedIn ? mainStack() : authStack()}
+    </Stack.Navigator>
+  );
 };
 
 export default Navigator;

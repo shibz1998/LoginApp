@@ -1,16 +1,17 @@
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   TextInput,
   Button,
+  StyleSheet,
   ActivityIndicator,
   Alert,
-  StyleSheet,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+
 import {userActions} from '../../features/user/userSlice';
 import {useDispatch, useSelector} from 'react-redux';
-import {ApiHelper} from '../../helpers';
+import ApiHelper from '../../helpers/ApiHelper';
 import {kApiUserSignup} from '../../config/WebService';
 
 const {request, success, failure} = userActions;
@@ -67,11 +68,13 @@ const SignupScreen = props => {
             .then(response => {
               dispatch(success(response));
 
-              props.navigation.navigate('Login');
+              // props.navigation.navigate('LoginScreen');
             })
             .catch(error => {
               dispatch(failure(error));
             });
+          // setEmail('');
+          // setPassword('');
         }}
       />
       {user.isFetching && <ActivityIndicator />}
