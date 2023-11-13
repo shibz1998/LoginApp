@@ -1,7 +1,13 @@
 //Keeping constants
 
-export const kApiUrlEndpoint = 'https://jsonplaceholder.typicode.com';
-export const kApiTodos = '/users';
+// export const kApiUrlEndpoint = 'https://jsonplaceholder.typicode.com';
+export const kApiUrlEndpoint = 'http://localhost:3000/api';
+
+export const kApiTodos = '/todos';
+export const kApiUserSignup = '/Users';
+export const kApiUserLogin = '/Users/login';
+export const kApiPostItems = '/items';
+export const kApiGetItems = '/items';
 
 export const ERROR_NETWORK_NOT_AVAILBLE = {
   title: 'Oops!',
