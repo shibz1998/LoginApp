@@ -29,7 +29,23 @@ class ApiHelper {
   };
 
   put = () => {};
-  delete = () => {};
+
+  delete = async (url, headers = {}) => {
+    url = kApiUrlEndpoint + url;
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+    }).then(x => x.json());
+
+    return new Promise((resolve, reject) => {
+      this.handlePromise(resolve, reject, response);
+    });
+  };
 
   //for handling errors
   handlePromise = (resolve, reject, response) => {

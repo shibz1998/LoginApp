@@ -1,16 +1,18 @@
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {itemActions} from '../../features/item/itemSlice';
 import {kApiGetItems} from '../../config/WebService';
+import {kApiPostItems} from '../../config/WebService';
 import ApiHelper from '../../helpers/ApiHelper';
 import PostItemsForm from '../../controls/PostItemsForm';
 
-const {request, success, failure} = itemActions;
+const {request, success, failure, deleteItem} = itemActions;
 
 export default function ItemsCRUD() {
   const dispatch = useDispatch();
   const item = useSelector(state => state.item);
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
     dispatch(request());
@@ -40,10 +42,29 @@ export default function ItemsCRUD() {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text>{item.title}</Text>
-                <Text>{item.details}</Text>
+
+                <Button title="Edit" />
+
+                <Button
+                  title="Delete"
+                  onPress={() => {
+                    const itemIdToDelete = item.id;
+                    dispatch(request());
+                    ApiHelper.delete(`${kApiPostItems}/${itemIdToDelete}`, {
+                      'X-Access-Token': user?.data?.accessToken,
+                    })
+                      .then(response => {
+                        dispatch(deleteItem(itemIdToDelete));
+                      })
+                      .catch(error => {
+                        dispatch(failure(error));
+                      });
+                  }}
+                />
               </View>
 
               <Text>{item.image}</Text>
+              <Text>{item.details}</Text>
             </View>
           );
         }}
