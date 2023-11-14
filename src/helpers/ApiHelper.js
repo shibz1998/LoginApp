@@ -47,7 +47,6 @@ class ApiHelper {
     });
   };
 
-  //for handling errors
   handlePromise = (resolve, reject, response) => {
     if (response.error) {
       if (response.error.code === 'LOGIN_FAILED') {

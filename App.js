@@ -12,7 +12,7 @@ import {LoginScreen, DashboardScreen} from './src/screens';
 import Navigator from './src/navigator';
 import {UserContextProvider} from './src/contexts/UserContext'; //exported to use it around the entire child components
 
-import store from './src/store';
+import {store} from './src/store';
 import {Provider} from 'react-redux';
 
 function App() {
