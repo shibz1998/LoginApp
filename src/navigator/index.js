@@ -7,6 +7,7 @@ import {
   DashboardScreen,
   SignupScreen,
   ApiScreen,
+  ItemsCRUD,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
@@ -45,6 +46,8 @@ const Navigator = () => {
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
         <Stack.Screen name="ApiScreen" component={ApiScreen}></Stack.Screen>
+
+        <Stack.Screen name="ItemsCRUD" component={ItemsCRUD}></Stack.Screen>
       </Stack.Group>
     );
   };

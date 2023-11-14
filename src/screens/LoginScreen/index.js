@@ -26,16 +26,16 @@ const LoginScreen = props => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  const handleLogin = () => {
-    if (email && password) {
-      setEmail(email);
-      setPassword(password);
-      setUser(true);
-    } else {
-      setEmail('');
-      setPassword('');
-    }
-  };
+  // const handleLogin = () => {
+  //   if (email && password) {
+  //     setEmail(email);
+  //     setPassword(password);
+  //     setUser(true);
+  //   } else {
+  //     setEmail('');
+  //     setPassword('');
+  //   }
+  // };
 
   return (
     <View style={styles.container}>

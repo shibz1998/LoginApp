@@ -2,9 +2,15 @@ import React, {useContext} from 'react';
 import {View, Text, Button, TouchableOpacity, TextInput} from 'react-native';
 import {firebase} from '@react-native-firebase/crashlytics';
 
+import {useDispatch, useSelector} from 'react-redux';
+
 import UserContext from '../../contexts/UserContext';
+
+import {userActions} from '../../features/user/userSlice';
 const DashboardScreen = props => {
-  const {setUser} = useContext(UserContext);
+  // const {setUser} = useContext(UserContext);
+  const {logout} = userActions;
+  const dispatch = useDispatch();
 
   const causeCrash = () => {
     // Trigger an unhandled exception to simulate a crash
@@ -20,13 +26,18 @@ const DashboardScreen = props => {
       <Button
         title="Log Out"
         onPress={() => {
-          setUser(false);
+          dispatch(logout());
         }}
       />
 
       <Button
         title="Api Screen"
         onPress={() => props.navigation.navigate('ApiScreen')}
+      />
+
+      <Button
+        title="ITEM CRUD API"
+        onPress={() => props.navigation.navigate('ItemsCRUD')}
       />
     </View>
   );
