@@ -52,20 +52,28 @@ export default function PostItemsForm(props) {
       <Button
         title="Submit"
         onPress={() => {
-          dispatch(request());
-
-          ApiHelper.post(
-            kApiPostItems,
-            {title, image, details},
-            {'X-Access-Token': user?.data?.accessToken},
-          )
-            .then(response => {
-              dispatch(addItem(response));
-            })
-            .catch(error => {
-              dispatch(failure(error));
-            });
+          dispatch(
+            request({
+              url: kApiPostItems,
+              data: {title, image, details},
+              header: {'X-Access-Token': user?.data?.accessToken},
+              requestType: 'POST',
+            }),
+          );
         }}
+
+        //   ApiHelper.post(
+        //     kApiPostItems,
+        //     {title, image, details},
+        //     {'X-Access-Token': user?.data?.accessToken},
+        //   )
+        //     .then(response => {
+        //       dispatch(addItem(response));
+        //     })
+        //     .catch(error => {
+        //       dispatch(failure(error));
+        //     });
+        // }}
       />
     </View>
   );

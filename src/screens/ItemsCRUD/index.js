@@ -15,15 +15,15 @@ export default function ItemsCRUD() {
   const user = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(request());
+    dispatch(request({url: kApiGetItems}));
 
-    ApiHelper.get(kApiGetItems)
-      .then(response => {
-        dispatch(success(response));
-      })
-      .catch(error => {
-        dispatch(failure(error));
-      });
+    // ApiHelper.get(kApiGetItems)
+    //   .then(response => {
+    //     dispatch(success(response));
+    //   })
+    //   .catch(error => {
+    //     dispatch(failure(error));
+    //   });
   }, []);
 
   return (

@@ -28,13 +28,14 @@ const itemSlice = createSlice({
     },
     addItem: (state, action) => {
       const itemToAdd = action.payload;
-
       state.items.push(itemToAdd);
+      state.errorMessage = {}; //addded
     },
 
     deleteItem: (state, action) => {
       const itemIdToDelete = action.payload;
       state.items = state.items.filter(item => item.id !== itemIdToDelete);
+      state.errorMessage = {}; //addded
     },
   },
 });

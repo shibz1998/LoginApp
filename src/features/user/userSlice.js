@@ -28,6 +28,9 @@ const userSlice = createSlice({
     },
     logout: state => {
       state.data = {};
+      state.isFetching = false;
+      state.failure = true;
+      state.errorMessage = {};
     },
   },
 });
