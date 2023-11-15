@@ -2,7 +2,7 @@ import {take, put, call, fork} from 'redux-saga/effects';
 import {itemActions} from '../features/item/itemSlice';
 import ApiHelper from '../helpers/ApiHelper';
 
-const {request, success, failure} = itemActions;
+const {request, success, failure, deleteItem} = itemActions;
 
 function callGetRequest(url, data, headers) {
   return ApiHelper.get(url, data, headers);
@@ -12,9 +12,14 @@ function callPostRequest(url, data, headers) {
   return ApiHelper.post(url, data, headers);
 }
 
+function callDeleteRequest(url, headers) {
+  return ApiHelper.delete(url, headers);
+}
+
 function* watchRequest() {
   while (true) {
     const {payload} = yield take(request);
+
     try {
       let response;
 
@@ -22,11 +27,16 @@ function* watchRequest() {
 
       if (requestType === 'POST') {
         response = yield call(callPostRequest, url, data, header, requestType);
+        yield put(success(response));
+      } else if (requestType === 'DELETE') {
+        console.log('URL FOR DELETE IS :' + url);
+        response = yield call(callDeleteRequest, url, header);
+        // Dispatch deleteItem action after successful delete
+        yield put(deleteItem({data}));
       } else {
         response = yield call(callGetRequest, payload.url, {});
+        yield put(success(response));
       }
-
-      yield put(success(response));
     } catch (error) {
       yield put(failure(error));
     }

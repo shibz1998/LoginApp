@@ -49,16 +49,16 @@ export default function ItemsCRUD() {
                   title="Delete"
                   onPress={() => {
                     const itemIdToDelete = item.id;
-                    dispatch(request());
-                    ApiHelper.delete(`${kApiPostItems}/${itemIdToDelete}`, {
-                      'X-Access-Token': user?.data?.accessToken,
-                    })
-                      .then(response => {
-                        dispatch(deleteItem(itemIdToDelete));
-                      })
-                      .catch(error => {
-                        dispatch(failure(error));
-                      });
+                    console.log(itemIdToDelete);
+                    const deleteUrl = `${kApiPostItems}/${itemIdToDelete}`;
+                    dispatch(
+                      request({
+                        url: deleteUrl,
+                        data: itemIdToDelete,
+                        header: {'X-Access-Token': user?.data?.accessToken},
+                        requestType: 'DELETE',
+                      }),
+                    );
                   }}
                 />
               </View>

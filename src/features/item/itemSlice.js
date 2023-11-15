@@ -33,9 +33,8 @@ const itemSlice = createSlice({
     },
 
     deleteItem: (state, action) => {
-      const itemIdToDelete = action.payload;
+      const itemIdToDelete = action.payload.data;
       state.items = state.items.filter(item => item.id !== itemIdToDelete);
-      state.errorMessage = {}; //addded
     },
   },
 });
