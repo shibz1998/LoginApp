@@ -12,6 +12,8 @@ const itemSlice = createSlice({
     success: (state, action) => {
       state.isFetching = false;
 
+      console.log(action.payload);
+
       if (Array.isArray(action.payload)) {
         state.items = action.payload;
       } else {
@@ -34,6 +36,7 @@ const itemSlice = createSlice({
 
     deleteItem: (state, action) => {
       const itemIdToDelete = action.payload.data;
+      console.log('Delete Item Data: ' + itemIdToDelete);
       state.items = state.items.filter(item => item.id !== itemIdToDelete);
     },
   },

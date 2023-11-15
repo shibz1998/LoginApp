@@ -31,7 +31,6 @@ function* watchRequest() {
       } else if (requestType === 'DELETE') {
         console.log('URL FOR DELETE IS :' + url);
         response = yield call(callDeleteRequest, url, header);
-        // Dispatch deleteItem action after successful delete
         yield put(deleteItem({data}));
       } else {
         response = yield call(callGetRequest, payload.url, {});
