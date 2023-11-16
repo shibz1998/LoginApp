@@ -62,21 +62,14 @@ const SignupScreen = props => {
       <Button
         title={'Signup'}
         onPress={() => {
-          dispatch(request({email, password}));
+          console.log('Signup button clicked');
+          dispatch(request({url: kApiUserSignup, data: {email, password}}));
 
-          ApiHelper.post(kApiUserSignup, {email, password})
-            .then(response => {
-              dispatch(success(response));
-
-              // props.navigation.navigate('LoginScreen');
-            })
-            .catch(error => {
-              dispatch(failure(error));
-            });
-          // setEmail('');
-          // setPassword('');
+          setEmail('');
+          setPassword('');
         }}
       />
+
       {user.isFetching && <ActivityIndicator />}
 
       <Button

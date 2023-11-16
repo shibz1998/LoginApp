@@ -47,6 +47,18 @@ class ApiHelper {
     });
   };
 
+  logoutUser = async url => {
+    url = kApiUrlEndpoint + url;
+
+    console.log('fullurl: ' + url);
+
+    const response = await fetch(url).then(x => x.json());
+
+    return new Promise((resolve, reject) => {
+      this.handlePromise(resolve, reject, response);
+    });
+  };
+
   handlePromise = (resolve, reject, response) => {
     if (response.error) {
       if (response.error.code === 'LOGIN_FAILED') {

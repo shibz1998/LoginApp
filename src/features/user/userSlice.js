@@ -26,12 +26,17 @@ const userSlice = createSlice({
       state.failure = true;
       state.errorMessage = action.payload;
     },
+
     logout: state => {
-      state.data = {};
-      state.isFetching = false;
-      state.failure = true;
-      state.errorMessage = {};
+      return initialState; // Reset the state to initial values
     },
+
+    // logout: state => {
+    //   state.data = {};
+    //   state.isFetching = false;
+    //   state.failure = true;
+    //   state.errorMessage = {};
+    // },
   },
 });
 

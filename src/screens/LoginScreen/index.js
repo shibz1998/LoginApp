@@ -21,7 +21,7 @@ const {request, success, failure} = userActions;
 const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {setUser} = useContext(UserContext);
+  // const {setUser} = useContext(UserContext);
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
@@ -59,29 +59,18 @@ const LoginScreen = props => {
         }}
       />
 
-      {/* <Button title="Login" onPress={handleLogin} /> */}
-
       <Button
         title={'Login'}
-        onPress={async () => {
-          // PersistanceHelper.setObject('loginDetails', {username, password});
-          dispatch(request({email, password}));
-
-          try {
-            const response = await ApiHelper.post(kApiUserLogin, {
-              email,
-              password,
-            });
-
-            dispatch(success(response));
-
-            setEmail('');
-            setPassword('');
-          } catch (error) {
-            dispatch(failure(error));
-          }
-
-          // EventRegister.emit('loginEvent', true);
+        onPress={() => {
+          dispatch(
+            request({
+              url: kApiUserLogin,
+              data: {
+                email,
+                password,
+              },
+            }),
+          );
         }}
       />
 

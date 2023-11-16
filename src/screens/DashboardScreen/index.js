@@ -7,10 +7,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import UserContext from '../../contexts/UserContext';
 
 import {userActions} from '../../features/user/userSlice';
+
+import {kApiUserLogout} from '../../config/WebService';
+
 const DashboardScreen = props => {
   // const {setUser} = useContext(UserContext);
-  const {logout} = userActions;
+  const {request, logout} = userActions;
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   const causeCrash = () => {
     // Trigger an unhandled exception to simulate a crash
@@ -21,14 +25,7 @@ const DashboardScreen = props => {
     <View style={{alignItems: 'center', justifyContent: 'center'}}>
       <Text>DashboardScreen</Text>
 
-      <Button title="Cause Crash" onPress={causeCrash} />
-
-      <Button
-        title="Log Out"
-        onPress={() => {
-          dispatch(logout());
-        }}
-      />
+      <Button color="red" title="Cause Crash" onPress={causeCrash} />
 
       <Button
         title="Api Screen"
@@ -36,8 +33,27 @@ const DashboardScreen = props => {
       />
 
       <Button
+        color="green"
         title="ITEM CRUD API"
         onPress={() => props.navigation.navigate('ItemsCRUD')}
+      />
+
+      <Button
+        color="red"
+        title="Log Out"
+        onPress={() => {
+          const logoutUrl = `${kApiUserLogout}?access_token=${user?.data?.accessToken}`;
+          console.log(logoutUrl);
+
+          // dispatch(
+          //   request({
+          //     url: logoutUrl,
+          //     requestType: 'Logout',
+          //   }),
+          // );
+
+          dispatch(logout());
+        }}
       />
     </View>
   );

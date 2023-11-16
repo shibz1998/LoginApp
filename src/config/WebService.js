@@ -6,6 +6,7 @@ export const kApiUrlEndpoint = 'http://localhost:3000/api';
 export const kApiTodos = '/todos';
 export const kApiUserSignup = '/Users';
 export const kApiUserLogin = '/Users/login';
+export const kApiUserLogout = '/Users/logout';
 export const kApiPostItems = '/items';
 export const kApiGetItems = '/items';
 
