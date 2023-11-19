@@ -455,6 +455,12 @@ PODS:
   - RNScreens (3.27.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
+  - RNSentry (5.13.0):
+    - React-Core
+    - Sentry/HybridSDK (= 8.15.2)
+  - Sentry/HybridSDK (8.15.2):
+    - SentryPrivate (= 8.15.2)
+  - SentryPrivate (8.15.2)
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -502,6 +508,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -519,6 +526,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PromisesSwift
+    - Sentry
+    - SentryPrivate
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -606,6 +615,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -665,6 +676,9 @@ SPEC CHECKSUMS:
   RNFBApp: b43d4829366a5065e17f9af3b03a0c4890eaeb85
   RNFBCrashlytics: 7456cc01ce08e6043dcfade9dbf5e28671887409
   RNScreens: 3e56c56bd35436215a56f48a753e30e8ce018a09
+  RNSentry: 82667e9889782365bf801645ef4d2a731dcf60df
+  Sentry: 6f5742b4c47c17c9adcf265f6f328cf4a0ed1923
+  SentryPrivate: b2f7996f37781080f04a946eb4e377ff63c64195
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 

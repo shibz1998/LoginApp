@@ -10,6 +10,8 @@ import {userActions} from '../../features/user/userSlice';
 
 import {kApiUserLogout} from '../../config/WebService';
 
+import * as Sentry from '@sentry/react-native';
+
 const DashboardScreen = props => {
   // const {setUser} = useContext(UserContext);
   const {request, logout} = userActions;
@@ -24,6 +26,14 @@ const DashboardScreen = props => {
   return (
     <View style={{alignItems: 'center', justifyContent: 'center'}}>
       <Text>DashboardScreen</Text>
+
+      <Button
+        color="red"
+        title="Sentry Crashtest!"
+        onPress={() => {
+          Sentry.captureException(new Error('First error'));
+        }}
+      />
 
       <Button color="red" title="Cause Crash" onPress={causeCrash} />
 
