@@ -14,6 +14,7 @@ import {UserContextProvider} from './src/contexts/UserContext'; //exported to us
 
 import {store} from './src/store';
 import {Provider} from 'react-redux';
+
 import * as Sentry from '@sentry/react-native';
 
 Sentry.init({

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "456419913597",
+    "project_id": "week3project-a88a2",
+    "storage_bucket": "week3project-a88a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456419913597:android:a328859f94aaeb2b33e614",
+        "android_client_info": {
+          "package_name": "com.loginapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0FjstK7Pdmg7LGY20stfMEb1ibfdzO28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456419913597:android:77ad3a3dd572fd6733e614",
+        "android_client_info": {
+          "package_name": "com.week3project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0FjstK7Pdmg7LGY20stfMEb1ibfdzO28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
