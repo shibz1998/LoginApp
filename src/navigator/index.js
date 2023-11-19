@@ -8,6 +8,7 @@ import {
   SignupScreen,
   ApiScreen,
   ItemsCRUD,
+  ProfileScreen,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
@@ -43,6 +44,10 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}></Stack.Screen>
+
+        <Stack.Screen
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
         <Stack.Screen name="ApiScreen" component={ApiScreen}></Stack.Screen>
@@ -54,7 +59,7 @@ const Navigator = () => {
 
   return (
     <Stack.Navigator>
-      {isUserLoggedIn ? mainStack() : authStack()}
+      {!isUserLoggedIn ? mainStack() : authStack()}
     </Stack.Navigator>
   );
 };
