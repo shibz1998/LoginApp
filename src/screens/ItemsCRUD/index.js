@@ -15,6 +15,7 @@ export default function ItemsCRUD() {
   const user = useSelector(state => state.user);
 
   useEffect(() => {
+    console.log('useeffect happening in itemcrud');
     dispatch(request({url: kApiGetItems}));
 
     // ApiHelper.get(kApiGetItems)
