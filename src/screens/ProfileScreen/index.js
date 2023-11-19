@@ -1,17 +1,3 @@
-// import React from 'react';
-// import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-
-// const ProfileScreen = () => {
-//   return (
-//     <View>
-//       <Text>My Profile</Text>
-
-//     </View>
-//   );
-// };
-
-// export default ProfileScreen;
-
 import React from 'react';
 import {
   View,
@@ -28,6 +14,21 @@ import {useState} from 'react';
 
 const ProfileScreen = props => {
   const [profile, setProfile] = useState(null);
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  console.log(username);
+  console.log(password);
+
+  const handlechange = () => {
+    if (username && password) {
+      setUser({username: username, password: password});
+      props.navigation.navigate('MyDashBoard');
+    } else {
+      console.log('Change not successful');
+    }
+  };
 
   const imagePick = () => {
     ImagePicker.openPicker({
@@ -53,7 +54,7 @@ const ProfileScreen = props => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.profileContainer}>
+      <View style={styles.card}>
         <TouchableOpacity onPress={imagePick}>
           <View style={styles.imgContainer}>
             <Image
@@ -72,39 +73,70 @@ const ProfileScreen = props => {
           </View>
         </TouchableOpacity>
 
-        <View style={styles.details}>
-          <TextInput
-            placeholder="First Name"
-            value=""
-            onChangeText={''}></TextInput>
-          <TextInput
-            placeholder="Last Name"
-            value=""
-            onChangeText={''}></TextInput>
-          <TextInput placeholder="Phone" value="" onChangeText={''}></TextInput>
+        <View style={{alignItems: 'center'}}>
+          <Text style={styles.title}>Edit Details</Text>
         </View>
-      </View>
+        <View>
+          <Text style={styles.text}> Username:</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={ct => {
+              setUsername(ct);
+            }}
+          />
 
-      <Button
-        title="Dashboard"
-        onPress={() => {
-          props.navigation.navigate('DashboardScreen');
-        }}></Button>
+          <Text style={styles.text}> Phone:</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={ct => {
+              setUsername(ct);
+            }}
+          />
+          <Text style={styles.text}> City:</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={ct => {
+              setUsername(ct);
+            }}
+          />
+
+          <Text style={styles.text}> Email:</Text>
+          <TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={ct => {
+              setUsername(ct);
+            }}
+          />
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handlechange}>
+          <Text>Press to Update</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            props.navigation.navigate('DashboardScreen');
+          }}>
+          <Text>Back to Dashboard</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 export default ProfileScreen;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  profileContainer: {
-    flex: 0.8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'yellow',
-  },
+  // profileContainer: {
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   backgroundColor: 'yellow',
+  // },
   image: {
     width: 120,
     height: 120,
@@ -113,8 +145,57 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 10,
   },
-  details: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+
+  container: {
+    flex: 1,
+    backgroundColor: '#003c55',
+    alignItems: 'center',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#003c55',
+    margin: 5,
+  },
+
+  button: {
+    backgroundColor: '#FC763F',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    margin: 10,
+  },
+  input: {
+    // backgroundColor: '#eecb9a',
+    backgroundColor: 'lightyellow',
+    borderRadius: 5,
+    padding: 8,
+    marginHorizontal: 10,
+    // backgroundColor: 'yellow',
+    width: 250,
+  },
+
+  card: {
+    // backgroundColor: 'lightblue',
+    backgroundColor: '#D9DCBB',
+    alignItems: 'center',
+    width: '80%',
+    borderRadius: 15,
+    padding: 10,
+    marginBottom: 10,
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+
+  text: {
+    margin: 5,
   },
 });
