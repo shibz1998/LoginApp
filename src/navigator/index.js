@@ -54,7 +54,7 @@ const Navigator = () => {
 
   return (
     <Stack.Navigator>
-      {!isUserLoggedIn ? mainStack() : authStack()}
+      {isUserLoggedIn ? mainStack() : authStack()}
     </Stack.Navigator>
   );
 };

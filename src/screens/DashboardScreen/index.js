@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {View, Text, Button, TouchableOpacity, TextInput} from 'react-native';
-// import {firebase} from '@react-native-firebase/crashlytics';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -9,8 +8,10 @@ import UserContext from '../../contexts/UserContext';
 import {userActions} from '../../features/user/userSlice';
 
 import {kApiUserLogout} from '../../config/WebService';
-// import firebase from 'firebase/crashlytics';
+
 import * as Sentry from '@sentry/react-native';
+
+import crashlytics from '@react-native-firebase/crashlytics';
 
 const DashboardScreen = props => {
   // const {setUser} = useContext(UserContext);
@@ -18,8 +19,14 @@ const DashboardScreen = props => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  simulateCrash = () => {
-    firebase.crashlytics().crash();
+  const simulateCrash = () => {
+    try {
+      // Trigger an unhandled exception to simulate a crash
+      throw new Error('Test crash triggered for Firebase Crashlytics.');
+    } catch (error) {
+      // Log the error to Firebase Crashlytics
+      crashlytics().recordError(error);
+    }
   };
 
   return (
