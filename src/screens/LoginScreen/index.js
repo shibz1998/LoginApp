@@ -18,32 +18,32 @@ const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [error, setError] = useState('Enter Email & Password');
+
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  const handleLogin = () => {
-    if (email && password) {
-      dispatch(
-        request({
-          url: kApiUserLogin,
-          data: {
-            email,
-            password,
-          },
-        }),
-      );
-    } else {
-      Alert.alert('Error', 'Email and password are required');
-    }
-  };
-
   useEffect(() => {
     if (user.error) {
-      // Handle the case where the login was not successful
       console.error('Login failed. Error:', user.error);
-      // You can also display an alert or set an error message state to be rendered in the UI
     }
   }, [user.error]);
+
+  const handleLogin = () => {
+    dispatch(
+      request({
+        url: kApiUserLogin,
+        data: {
+          email,
+          password,
+        },
+      }),
+    );
+    if (user.errorMessage && !user?.data?.accessToken) {
+      Alert.alert(JSON.stringify(user.errorMessage));
+      // Alert.alert(error);
+    }
+  };
 
   return (
     <View style={styles.container}>

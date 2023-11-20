@@ -24,9 +24,11 @@ function* watchRequest() {
         yield put(logout());
       } else {
         response = yield call(callPostRequest, payload.url, payload.data);
+        console.log(response);
         yield put(success(response));
       }
     } catch (err) {
+      console.log(err);
       yield put(failure(err.message));
     }
   }

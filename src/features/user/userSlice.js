@@ -8,6 +8,8 @@ const userSlice = createSlice({
   reducers: {
     request: (state, action) => {
       state.isFetching = true;
+      state.failure = false;
+      state.errorMessage = {};
     },
     success: (state, action) => {
       if (action.payload.userId) {
@@ -25,6 +27,7 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.failure = true;
       state.errorMessage = action.payload;
+      // state.initialState = {};
     },
 
     logout: state => {
