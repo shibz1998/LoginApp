@@ -15,7 +15,6 @@ import UserContext from '../contexts/UserContext';
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  // const {user} = useContext(UserContext);
   const user = useSelector(state => state.user);
   useEffect(() => {
     setIsUserLoggedIn(
