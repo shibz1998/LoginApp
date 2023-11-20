@@ -1,17 +1,13 @@
-import React, {useState, useContext} from 'react';
-
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   TextInput,
   Button,
-  StyleSheet,
   ActivityIndicator,
+  StyleSheet,
+  Alert,
 } from 'react-native';
-import UserContext from '../../contexts/UserContext';
-
-import ApiHelper from '../../helpers/ApiHelper';
-
 import {useDispatch, useSelector} from 'react-redux';
 import {userActions} from '../../features/user/userSlice';
 import {kApiUserLogin} from '../../config/WebService';
@@ -21,21 +17,33 @@ const {request, success, failure} = userActions;
 const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const {setUser} = useContext(UserContext);
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  // const handleLogin = () => {
-  //   if (email && password) {
-  //     setEmail(email);
-  //     setPassword(password);
-  //     setUser(true);
-  //   } else {
-  //     setEmail('');
-  //     setPassword('');
-  //   }
-  // };
+  const handleLogin = () => {
+    if (email && password) {
+      dispatch(
+        request({
+          url: kApiUserLogin,
+          data: {
+            email,
+            password,
+          },
+        }),
+      );
+    } else {
+      Alert.alert('Error', 'Email and password are required');
+    }
+  };
+
+  useEffect(() => {
+    if (user.error) {
+      // Handle the case where the login was not successful
+      console.error('Login failed. Error:', user.error);
+      // You can also display an alert or set an error message state to be rendered in the UI
+    }
+  }, [user.error]);
 
   return (
     <View style={styles.container}>
@@ -45,34 +53,18 @@ const LoginScreen = props => {
         style={styles.inputtext}
         placeholder="Enter Email"
         value={email}
-        onChangeText={ct => {
-          setEmail(ct);
-        }}
+        onChangeText={ct => setEmail(ct)}
       />
 
       <TextInput
         style={styles.inputtext}
         placeholder="Enter Password"
         value={password}
-        onChangeText={ct => {
-          setPassword(ct);
-        }}
+        onChangeText={ct => setPassword(ct)}
+        secureTextEntry={true}
       />
 
-      <Button
-        title={'Login'}
-        onPress={() => {
-          dispatch(
-            request({
-              url: kApiUserLogin,
-              data: {
-                email,
-                password,
-              },
-            }),
-          );
-        }}
-      />
+      <Button title={'Login'} onPress={handleLogin} />
 
       <Button
         title="Sign Up"
@@ -82,6 +74,12 @@ const LoginScreen = props => {
       />
 
       {user.isFetching && <ActivityIndicator />}
+
+      {/* {user.errorMessage && (
+        <View>
+          <Text>{JSON.stringify(user.errorMessage)}</Text>
+        </View>
+      )} */}
     </View>
   );
 };
