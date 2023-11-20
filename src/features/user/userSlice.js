@@ -8,12 +8,16 @@ const userSlice = createSlice({
   reducers: {
     request: (state, action) => {
       state.isFetching = true;
-      state.failure = false;
-      state.errorMessage = {};
+      // state.failure = false;
+      // state.errorMessage = {};
     },
     success: (state, action) => {
       if (action.payload.userId) {
-        state.data = {...action.payload, accessToken: action.payload.id};
+        state.data = {
+          ...action.payload,
+          accessToken: action.payload.id,
+          email: action.payload.email,
+        };
         delete state.data.id;
       } else {
         state.data = action.payload;
@@ -31,7 +35,8 @@ const userSlice = createSlice({
     },
 
     logout: state => {
-      return initialState; // Reset the state to initial values
+      return initialState;
+      // Reset the state to initial values
     },
 
     // logout: state => {

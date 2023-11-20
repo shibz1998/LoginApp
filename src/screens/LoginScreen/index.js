@@ -18,30 +18,36 @@ const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [error, setError] = useState('Enter Email & Password');
-
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
+  const [error, setError] = useState('');
+
   useEffect(() => {
-    if (user.error) {
-      console.error('Login failed. Error:', user.error);
-    }
-  }, [user.error]);
+    // if (user.errorMessage) {
+    //   console.error('Login failed. Error:', user.errorMessage);
+    // }
+  }, [user.errorMessage]);
+
+  // const errorMessage = () => {
+  //   if (user.errorMessage && !user?.data?.accessToken) {
+  //     Alert.alert(JSON.stringify(user.errorMessage));
+  //   }
+  // };
 
   const handleLogin = () => {
-    dispatch(
-      request({
-        url: kApiUserLogin,
-        data: {
-          email,
-          password,
-        },
-      }),
-    );
-    if (user.errorMessage && !user?.data?.accessToken) {
-      Alert.alert(JSON.stringify(user.errorMessage));
-      // Alert.alert(error);
+    if (email && password) {
+      dispatch(
+        request({
+          url: kApiUserLogin,
+          data: {
+            email,
+            password,
+          },
+        }),
+      );
+
+      // errorMessage();
     }
   };
 
@@ -75,11 +81,11 @@ const LoginScreen = props => {
 
       {user.isFetching && <ActivityIndicator />}
 
-      {/* {user.errorMessage && (
+      {user.errorMessage && Object.keys(user.errorMessage).length !== 0 && (
         <View>
           <Text>{JSON.stringify(user.errorMessage)}</Text>
         </View>
-      )} */}
+      )}
     </View>
   );
 };

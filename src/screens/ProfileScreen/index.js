@@ -8,27 +8,22 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-
+import {useSelector} from 'react-redux';
 import ImagePicker, {openPicker} from 'react-native-image-crop-picker';
 import {useState} from 'react';
 
 const ProfileScreen = props => {
+  const user = useSelector(state => state.user);
+
   const [profile, setProfile] = useState(null);
 
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('');
+  const [email, setEmail] = useState(user.data?.email || '');
 
-  console.log(username);
-  console.log(password);
-
-  const handlechange = () => {
-    if (username && password) {
-      setUser({username: username, password: password});
-      props.navigation.navigate('MyDashBoard');
-    } else {
-      console.log('Change not successful');
-    }
-  };
+  console.log(email);
+  const handlechange = () => {};
 
   const imagePick = () => {
     ImagePicker.openPicker({
@@ -89,26 +84,27 @@ const ProfileScreen = props => {
           <Text style={styles.text}> Phone:</Text>
           <TextInput
             style={styles.input}
-            value={username}
+            value={phone}
             onChangeText={ct => {
-              setUsername(ct);
+              setPhone(ct);
             }}
           />
           <Text style={styles.text}> City:</Text>
           <TextInput
             style={styles.input}
-            value={username}
+            value={city}
             onChangeText={ct => {
-              setUsername(ct);
+              setCity(ct);
             }}
           />
 
           <Text style={styles.text}> Email:</Text>
           <TextInput
+            placeholder={email}
             style={styles.input}
-            value={username}
+            value={email}
             onChangeText={ct => {
-              setUsername(ct);
+              setEmail(ct);
             }}
           />
         </View>
