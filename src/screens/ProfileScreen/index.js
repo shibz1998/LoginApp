@@ -128,11 +128,6 @@ const ProfileScreen = props => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  // profileContainer: {
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   backgroundColor: 'yellow',
-  // },
   image: {
     width: 120,
     height: 120,
