@@ -12,6 +12,29 @@ import {useSelector} from 'react-redux';
 import ImagePicker, {openPicker} from 'react-native-image-crop-picker';
 import {useState} from 'react';
 
+//For user Input
+
+import {InputComponent} from '../../screens';
+import {useForm} from 'react-hook-form';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
+
+const schema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required('First name is required')
+    .matches(/^[a-zA-Z\s]+$/, 'First name must contain only letters'),
+  lastName: yup
+    .string()
+    .required('Last name is required')
+    .matches(/^[a-zA-Z\s]+$/, 'Last name must contain only letters'),
+  email: yup
+    .string()
+    .required('Email is required')
+    .email('Invalid email')
+    .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email'),
+});
+
 const ProfileScreen = props => {
   const user = useSelector(state => state.user);
 
@@ -23,6 +46,21 @@ const ProfileScreen = props => {
   const [email, setEmail] = useState(user.data?.email || '');
 
   console.log(email);
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    mode: 'all',
+    resolver: yupResolver(schema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+    },
+  });
+
   const handlechange = () => {};
 
   const imagePick = () => {
@@ -71,7 +109,8 @@ const ProfileScreen = props => {
         <View style={{alignItems: 'center'}}>
           <Text style={styles.title}>Edit Details</Text>
         </View>
-        <View>
+
+        {/* <View>
           <Text style={styles.text}> Username:</Text>
           <TextInput
             style={styles.input}
@@ -106,6 +145,33 @@ const ProfileScreen = props => {
             onChangeText={ct => {
               setEmail(ct);
             }}
+          />
+        </View> */}
+
+        <View>
+          <InputComponent
+            control={control}
+            placeholder={'Enter First name'}
+            name="firstName"
+            error={errors?.firstName}
+          />
+          <InputComponent
+            control={control}
+            placeholder={'Enter Last name'}
+            name="lastName"
+            error={errors?.lastName}
+          />
+          <InputComponent
+            control={control}
+            placeholder={'Enter Email'}
+            name="email"
+            error={errors?.email}
+          />
+          <Button
+            title={'Submit'}
+            onPress={handleSubmit(formData => {
+              console.log(formData);
+            })}
           />
         </View>
 

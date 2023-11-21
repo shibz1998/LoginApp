@@ -4,6 +4,7 @@ import SignupScreen from './SignupScreen';
 import ApiScreen from './ApiScreen';
 import ItemsCRUD from './ItemsCRUD';
 import ProfileScreen from './ProfileScreen';
+import InputComponent from './InputComponent';
 
 export {
   LoginScreen,
@@ -12,4 +13,5 @@ export {
   ApiScreen,
   ItemsCRUD,
   ProfileScreen,
+  InputComponent,
 };
