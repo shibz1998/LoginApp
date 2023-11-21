@@ -33,6 +33,12 @@ const schema = yup.object().shape({
     .required('Email is required')
     .email('Invalid email')
     .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email'),
+  phone: yup
+    .string()
+    .required('Phone is required')
+    .matches(/^\d+$/, 'Should only contain numbers')
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(15, 'Phone number must not exceed 15 digits'),
 });
 
 const ProfileScreen = props => {
@@ -45,7 +51,7 @@ const ProfileScreen = props => {
   const [city, setCity] = useState('');
   const [email, setEmail] = useState(user.data?.email || '');
 
-  console.log(email);
+  // console.log(email);
 
   const {
     control,
@@ -58,6 +64,7 @@ const ProfileScreen = props => {
       firstName: '',
       lastName: '',
       email: '',
+      phone: '',
     },
   });
 
@@ -167,16 +174,20 @@ const ProfileScreen = props => {
             name="email"
             error={errors?.email}
           />
-          <Button
-            title={'Submit'}
-            onPress={handleSubmit(formData => {
-              console.log(formData);
-            })}
+          <InputComponent
+            control={control}
+            placeholder={'Enter Phone '}
+            name="phone"
+            error={errors?.phone}
           />
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={handlechange}>
-          <Text>Press to Update</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleSubmit(formData => {
+            console.log(formData);
+          })}>
+          <Text>Submit</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
