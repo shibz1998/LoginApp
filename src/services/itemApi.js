@@ -3,9 +3,12 @@
 // export const itemApi = createApi({
 //   reducerPath: 'itemApi',
 //   baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/api/'}),
+//   // tagTypes: ['Item'],
 //   endpoints: builder => ({
+//     invalidatesTags: ['Item'],
 //     getAllItems: builder.query({
-//       query: name => 'items',
+//       query: () => 'items',
+//       // invalidatesTags: ['Item'],
 //     }),
 //   }),
 // });
@@ -13,7 +16,6 @@
 // export const {useGetAllItemsQuery} = itemApi;
 
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-
 export const itemApi = createApi({
   reducerPath: 'itemApi',
   baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/api/'}),
@@ -21,7 +23,19 @@ export const itemApi = createApi({
     getAllItems: builder.query({
       query: () => 'items',
     }),
+    postItem: builder.mutation({
+      query: newItem => ({
+        url: 'items',
+        method: 'POST',
+        body: {
+          title: newItem.title,
+          image: newItem.image,
+          details: newItem.details,
+        },
+        headers: {'X-Access-Token': newItem.accessToken},
+      }),
+    }),
   }),
 });
 
-export const {useGetAllItemsQuery} = itemApi;
+export const {useGetAllItemsQuery, usePostItemMutation} = itemApi;
