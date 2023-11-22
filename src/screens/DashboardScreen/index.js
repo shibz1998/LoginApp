@@ -49,6 +49,18 @@ const DashboardScreen = props => {
       />
 
       <Button
+        color="blue"
+        title="RTKQUERY"
+        onPress={() => props.navigation.navigate('RTKQueryScreen')}
+      />
+
+      <Button
+        color="black"
+        title="ProfilePage"
+        onPress={() => props.navigation.navigate('ProfileScreen')}
+      />
+
+      <Button
         color="green"
         title="ITEM CRUD API"
         onPress={() => props.navigation.navigate('ItemsCRUD')}

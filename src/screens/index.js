@@ -5,7 +5,7 @@ import ApiScreen from './ApiScreen';
 import ItemsCRUD from './ItemsCRUD';
 import ProfileScreen from './ProfileScreen';
 import InputComponent from './InputComponent';
-
+import RTKQueryScreen from './RTKQueryScreen';
 export {
   LoginScreen,
   DashboardScreen,
@@ -14,4 +14,5 @@ export {
   ItemsCRUD,
   ProfileScreen,
   InputComponent,
+  RTKQueryScreen,
 };

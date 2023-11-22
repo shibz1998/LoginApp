@@ -9,6 +9,7 @@ import {
   ApiScreen,
   ItemsCRUD,
   ProfileScreen,
+  RTKQueryScreen,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
@@ -49,6 +50,11 @@ const Navigator = () => {
         <Stack.Screen
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
+
+        <Stack.Screen
+          name="RTKQueryScreen"
+          component={RTKQueryScreen}></Stack.Screen>
+
         <Stack.Screen name="ApiScreen" component={ApiScreen}></Stack.Screen>
 
         <Stack.Screen name="ItemsCRUD" component={ItemsCRUD}></Stack.Screen>
