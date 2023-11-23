@@ -16,6 +16,8 @@ import {kApiUserSignup} from '../../config/WebService';
 
 const {request, success, failure} = userActions;
 
+import {useSignUpUserMutation} from '../../services/userApi';
+
 const SignupScreen = props => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -23,14 +25,31 @@ const SignupScreen = props => {
 
   const user = useSelector(state => state.user);
 
+  const [signUpUser, {isLoading: isUpdating, isSuccess, data}] =
+    useSignUpUserMutation();
+
+  // useEffect(() => {
+  //   if (user?.errorMessage?.message) {
+  //     //   Alert.alert('Error', user?.errorMessage?.message);
+  //     setErrorMsg(user?.errorMessage?.message);
+  //   } else {
+  //     setErrorMsg({});
+  //   }
+  // }, [user]);
+
   useEffect(() => {
-    if (user?.errorMessage?.message) {
-      //   Alert.alert('Error', user?.errorMessage?.message);
-      setErrorMsg(user?.errorMessage?.message);
-    } else {
-      setErrorMsg({});
+    if (isSuccess) {
+      console.log('Login successful. Access Token:' + data.id);
+      console.log(data);
+      // // dispatch(success(data));
+      // console.log('User slice data:', user.data);
+
+      // Navigate to the main stack or perform other actions
+      // For example: props.navigation.navigate('MainStack');
+
+      props.navigation.navigate('LoginScreen');
     }
-  }, [user]);
+  }, [isSuccess]);
 
   const dispatch = useDispatch();
 
@@ -63,7 +82,9 @@ const SignupScreen = props => {
         title={'Signup'}
         onPress={() => {
           console.log('Signup button clicked');
-          dispatch(request({url: kApiUserSignup, data: {email, password}}));
+          // dispatch(request({url: kApiUserSignup, data: {email, password}}));
+
+          signUpUser({email, password});
 
           setEmail('');
           setPassword('');

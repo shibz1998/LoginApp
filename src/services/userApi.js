@@ -14,7 +14,27 @@ export const userApi = createApi({
         // headers: {'X-Access-Token': newItem.accessToken},
       }),
     }),
+
+    signUpUser: builder.mutation({
+      query: ({email, password}) => ({
+        url: 'Users',
+        method: 'POST',
+        body: {email, password},
+      }),
+    }),
+    logOutUser: builder.mutation({
+      query: ({accessToken}) => ({
+        url: 'Users/logout',
+        method: 'POST',
+        body: {},
+        headers: {'X-Access-Token': accessToken},
+      }),
+    }),
   }),
 });
 
-export const {usePostUserMutation} = userApi;
+export const {
+  useLogOutUserMutation,
+  useSignUpUserMutation,
+  usePostUserMutation,
+} = userApi;

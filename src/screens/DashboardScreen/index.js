@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, Text, Button, TouchableOpacity, TextInput} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,11 +13,15 @@ import * as Sentry from '@sentry/react-native';
 
 import crashlytics from '@react-native-firebase/crashlytics';
 
+import {useLogOutUserMutation} from '../../services/userApi';
 const DashboardScreen = props => {
   // const {setUser} = useContext(UserContext);
   const {request, logout} = userActions;
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+
+  const [logOutUser, {isLoading: isUpdating, isSuccess, data}] =
+    useLogOutUserMutation();
 
   const simulateCrash = () => {
     try {
@@ -28,6 +32,18 @@ const DashboardScreen = props => {
       crashlytics().recordError(error);
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log('Logout:' + data.date);
+      console.log(data);
+
+      console.log('User slice data:', user.data);
+
+      // Navigate to the main stack or perform other actions
+      // For example: props.navigation.navigate('MainStack');
+    }
+  }, [isSuccess]);
 
   return (
     <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -75,14 +91,13 @@ const DashboardScreen = props => {
 
           console.log('User state:', user);
 
-          // dispatch(
-          //   request({
-          //     url: logoutUrl,
-          //     requestType: 'Logout',
-          //   }),
-          // );
+          // dispatch(logout());
 
+          // logOutUser(user?.data?.accessToken);
+
+          logOutUser({accessToken: user.data.accessToken});
           dispatch(logout());
+          console.log('User state:', user);
         }}
       />
     </View>
