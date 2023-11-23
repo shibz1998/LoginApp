@@ -89,6 +89,12 @@ const DashboardScreen = props => {
       />
 
       <Button
+        color="violet"
+        title="Location Test"
+        onPress={() => props.navigation.navigate('LocationTestScreen')}
+      />
+
+      <Button
         color="red"
         title="Log Out"
         onPress={() => {

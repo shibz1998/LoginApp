@@ -9,6 +9,7 @@ const londonMarkers = [
   {latitude: 51.502116, longitude: -0.113899, title: 'Tate Modern'},
   {latitude: 51.516272, longitude: -0.098234, title: 'The Shard'},
   {latitude: 51.500152, longitude: -0.126236, title: 'Big Ben'},
+  {latitude: 51.5444, longitude: 0.133, title: 'My Home'},
 ];
 
 export default function MapScreen() {

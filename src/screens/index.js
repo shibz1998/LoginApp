@@ -7,6 +7,7 @@ import ProfileScreen from './ProfileScreen';
 import InputComponent from './InputComponent';
 import RTKQueryScreen from './RTKQueryScreen';
 import MapScreen from './MapScreen';
+import LocationTestScreen from './LocationTestScreen';
 export {
   LoginScreen,
   DashboardScreen,
@@ -17,4 +18,5 @@ export {
   InputComponent,
   RTKQueryScreen,
   MapScreen,
+  LocationTestScreen,
 };
