@@ -73,6 +73,8 @@ const DashboardScreen = props => {
           const logoutUrl = `${kApiUserLogout}?access_token=${user?.data?.accessToken}`;
           console.log(logoutUrl);
 
+          console.log('User state:', user);
+
           // dispatch(
           //   request({
           //     url: logoutUrl,

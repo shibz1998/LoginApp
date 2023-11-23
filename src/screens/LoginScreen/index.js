@@ -12,6 +12,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {userActions} from '../../features/user/userSlice';
 import {kApiUserLogin} from '../../config/WebService';
 
+import {usePostUserMutation} from '../../services/userApi';
+
 const {request, success, failure} = userActions;
 
 const LoginScreen = props => {
@@ -23,11 +25,20 @@ const LoginScreen = props => {
 
   const [error, setError] = useState('');
 
+  const [postUser, {isLoading: isUpdating, isSuccess, data}] =
+    usePostUserMutation();
+
   useEffect(() => {
-    // if (user.errorMessage) {
-    //   console.error('Login failed. Error:', user.errorMessage);
-    // }
-  }, [user.errorMessage]);
+    if (isSuccess) {
+      console.log('Login successful. Access Token:' + data.id);
+      console.log(data);
+      dispatch(success(data));
+      console.log('User slice data:', user.data);
+
+      // Navigate to the main stack or perform other actions
+      // For example: props.navigation.navigate('MainStack');
+    }
+  }, [isSuccess]);
 
   // const errorMessage = () => {
   //   if (user.errorMessage && !user?.data?.accessToken) {
@@ -37,17 +48,19 @@ const LoginScreen = props => {
 
   const handleLogin = () => {
     if (email && password) {
-      dispatch(
-        request({
-          url: kApiUserLogin,
-          data: {
-            email,
-            password,
-          },
-        }),
-      );
+      // dispatch(
+      //   request({
+      //     url: kApiUserLogin,
+      //     data: {
+      //       email,
+      //       password,
+      //     },
+      //   }),
+      // );
 
-      // errorMessage();
+      postUser({email, password});
+
+      // console.log(data?.id);
     }
   };
 

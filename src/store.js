@@ -11,6 +11,7 @@ import sagas from './sagas';
 import createSagaMiddleware from 'redux-saga';
 
 import {itemApi} from './services/itemApi';
+import {userApi} from './services/userApi';
 
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
@@ -32,7 +33,12 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(logger, sagaMiddleware, itemApi.middleware),
+    getDefaultMiddleware().concat(
+      logger,
+      sagaMiddleware,
+      itemApi.middleware,
+      userApi.middleware,
+    ),
 });
 
 sagaMiddleware.run(sagas);
