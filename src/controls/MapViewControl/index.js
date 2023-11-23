@@ -1,12 +1,17 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 
 const MapViewControl = props => {
+  const [isMapReady, setIsMapReady] = useState(false);
+
   return (
     <View style={{flex: 1}}>
       <MapView
         showsMyLocationButton
+        onMapReady={() => {
+          setIsMapReady(true);
+        }}
         onLongPress={props.onLongPress}
         provider={PROVIDER_GOOGLE}
         style={styles.map}
@@ -21,37 +26,41 @@ const MapViewControl = props => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
-        {props?.markers.map(thisEl => {
-          return (
-            <Marker
-              draggable
-              title={thisEl.title}
-              description={'this is the description'}
-              coordinate={thisEl}>
-              <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  backgroundColor: 'grey',
-                  borderRadius: 20,
-                  justifyContent: 'center',
-                  alignItems: 'center',
+        {isMapReady &&
+          props?.markers.map(thisEl => {
+            return (
+              <Marker
+                draggable
+                title={thisEl.title}
+                description={'this is the description'}
+                coordinate={{
+                  latitude: parseFloat(thisEl.latitude),
+                  longitude: parseFloat(thisEl.longitude),
                 }}>
-                <Text>F</Text>
-              </View>
-              <Callout>
                 <View
                   style={{
-                    width: 100,
-                    height: 50,
-                    backgroundColor: 'lightgrey',
+                    width: 40,
+                    height: 40,
+                    backgroundColor: 'grey',
+                    borderRadius: 20,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}>
-                  <Text style={styles.calloutText}>{thisEl.title}</Text>
+                  <Text>F</Text>
                 </View>
-              </Callout>
-            </Marker>
-          );
-        })}
+                <Callout>
+                  <View
+                    style={{
+                      width: 100,
+                      height: 50,
+                      backgroundColor: 'lightgrey',
+                    }}>
+                    <Text style={styles.calloutText}>{thisEl.title}</Text>
+                  </View>
+                </Callout>
+              </Marker>
+            );
+          })}
       </MapView>
     </View>
   );

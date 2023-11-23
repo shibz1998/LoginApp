@@ -18,17 +18,18 @@ export default function MapScreen() {
     <View style={{flex: 1}}>
       <MapViewControl
         markers={myMapMarkers}
+        // markers={[]}
         onLongPress={arg => {
           const {coordinate} = arg.nativeEvent;
 
-          const newMarker = {
-            latitude: coordinate.latitude.toString(), // Convert to string if needed
-            longitude: coordinate.longitude.toString(),
-            title: 'New Location',
-          };
+          //   const newMarker = {
+          //     latitude: coordinate.latitude.toString(), // Convert to string if needed
+          //     longitude: coordinate.longitude.toString(),
+          //     title: 'New Location',
+          //   };
 
-          setMyMapMarkers([...myMapMarkers, newMarker]);
-          //   setMyMapMarkers([...myMapMarkers, coordinate]);
+          //   setMyMapMarkers([...myMapMarkers, newMarker]);
+          setMyMapMarkers([...myMapMarkers, coordinate]);
         }}
       />
     </View>
