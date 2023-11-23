@@ -2,17 +2,17 @@ import {View, Text, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import MapViewControl from '../../controls/MapViewControl/index';
 
-const markers = [
-  {latitude: '37.794861', longitude: '-122.4106587', title: 'some location 1'},
-  {latitude: '37.8078486', longitude: '-122.4102691', title: 'some location 2'},
-  {latitude: '37.8278286', longitude: '-122.4102791', title: 'some location 3'},
-  {latitude: '37.8378486', longitude: '-122.4102691', title: 'some location 4'},
-  {latitude: '37.8578486', longitude: '-122.4302691', title: 'some location 5'},
-  {latitude: '37.8878486', longitude: '-122.4502691', title: 'some location 6'},
+const londonMarkers = [
+  {latitude: 51.509865, longitude: -0.118092, title: 'London Eye'},
+  {latitude: 51.51106, longitude: -0.117155, title: 'Westminster Abbey'},
+  {latitude: 51.50735, longitude: -0.127758, title: 'Buckingham Palace'},
+  {latitude: 51.502116, longitude: -0.113899, title: 'Tate Modern'},
+  {latitude: 51.516272, longitude: -0.098234, title: 'The Shard'},
+  {latitude: 51.500152, longitude: -0.126236, title: 'Big Ben'},
 ];
 
 export default function MapScreen() {
-  const [myMapMarkers, setMyMapMarkers] = useState(markers);
+  const [myMapMarkers, setMyMapMarkers] = useState(londonMarkers);
 
   return (
     <View style={{flex: 1}}>

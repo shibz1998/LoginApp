@@ -11,10 +11,15 @@ const MapViewControl = props => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          // latitude: 37.78825,
+          // longitude: -122.4324,
+          // latitudeDelta: 0.015,
+          // longitudeDelta: 0.0121,
+          //london
+          latitude: 51.509865,
+          longitude: -0.118092,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}>
         {props?.markers.map(thisEl => {
           return (
@@ -37,10 +42,12 @@ const MapViewControl = props => {
               <Callout>
                 <View
                   style={{
-                    width: 300,
-                    height: 150,
-                    backgroundColor: 'red',
-                  }}></View>
+                    width: 100,
+                    height: 50,
+                    backgroundColor: 'lightgrey',
+                  }}>
+                  <Text style={styles.calloutText}>{thisEl.title}</Text>
+                </View>
               </Callout>
             </Marker>
           );
