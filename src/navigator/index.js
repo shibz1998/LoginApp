@@ -10,6 +10,7 @@ import {
   ItemsCRUD,
   ProfileScreen,
   RTKQueryScreen,
+  MapScreen,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
@@ -44,12 +45,14 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}></Stack.Screen>
-
-        <Stack.Screen
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
+
+        <Stack.Screen name="MapScreen" component={MapScreen}></Stack.Screen>
+
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}></Stack.Screen>
 
         <Stack.Screen
           name="RTKQueryScreen"

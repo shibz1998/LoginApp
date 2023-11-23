@@ -83,6 +83,12 @@ const DashboardScreen = props => {
       />
 
       <Button
+        color="violet"
+        title="MAP VIEW"
+        onPress={() => props.navigation.navigate('MapScreen')}
+      />
+
+      <Button
         color="red"
         title="Log Out"
         onPress={() => {
