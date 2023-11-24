@@ -15,10 +15,19 @@ import {
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
+import NotificationHelper from '../helpers/NotificationHelper';
+
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
   const user = useSelector(state => state.user);
+
+  useEffect(() => {
+    NotificationHelper.initializeFCM();
+    NotificationHelper.checkFCMPermission();
+    NotificationHelper.getToken();
+  }, []);
+
   useEffect(() => {
     setIsUserLoggedIn(
       user?.data?.accessToken &&
