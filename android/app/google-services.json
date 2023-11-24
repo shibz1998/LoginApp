@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:456419913597:android:a328859f94aaeb2b33e614",
+        "mobilesdk_app_id": "1:456419913597:android:0ea0053a1b82298f33e614",
         "android_client_info": {
-          "package_name": "com.loginapp"
+          "package_name": "com.loginApp"
         }
       },
       "oauth_client": [],

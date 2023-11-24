@@ -1,4 +1,4 @@
-package com.loginapp;
+package com.loginApp;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

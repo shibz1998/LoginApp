@@ -1,4 +1,4 @@
-package com.loginapp;
+package com.loginApp;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

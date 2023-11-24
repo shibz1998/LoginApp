@@ -77,9 +77,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.loginapp"
+    namespace "com.loginApp"
     defaultConfig {
-        applicationId "com.loginapp"
+        applicationId "com.loginApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
