@@ -6,10 +6,6 @@ const NativeModuleTest = () => {
   const {CalendarModule} = NativeModules;
 
   console.log(NativeModules.Counter);
-  NativeModules.Counter.increment(value => {
-    console.log('The count is ' + value);
-  });
-  console.log(NativeModules.Counter.getConstants());
 
   const onPress = () => {
     // console.log('We will invoke the native module here!');
@@ -32,6 +28,12 @@ const NativeModuleTest = () => {
       .then(result => console.log(result))
       .catch(error => console.error(error.message, error.code));
   };
+  const increment = () => {
+    NativeModules.Counter.increment(value => {
+      console.log('The count is ' + value);
+    });
+    console.log(NativeModules.Counter.getConstants());
+  };
 
   return (
     <View>
@@ -41,7 +43,9 @@ const NativeModuleTest = () => {
         onPress={onPress}
       />
 
-      <Button title="IOS Click to decrement" color="red" onPress={decrement} />
+      <Button title="Decrement => IOS" color="red" onPress={decrement} />
+
+      <Button title="Increment => IOS" color="blue" onPress={increment} />
     </View>
   );
 };
