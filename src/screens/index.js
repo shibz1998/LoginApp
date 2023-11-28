@@ -8,6 +8,7 @@ import InputComponent from './InputComponent';
 import RTKQueryScreen from './RTKQueryScreen';
 import MapScreen from './MapScreen';
 import LocationTestScreen from './LocationTestScreen';
+import NativeModuleTest from './NativeModuleTest';
 export {
   LoginScreen,
   DashboardScreen,
@@ -19,4 +20,5 @@ export {
   RTKQueryScreen,
   MapScreen,
   LocationTestScreen,
+  NativeModuleTest,
 };

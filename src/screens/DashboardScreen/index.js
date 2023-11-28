@@ -95,6 +95,12 @@ const DashboardScreen = props => {
       />
 
       <Button
+        color="black"
+        title="Native Module Test"
+        onPress={() => props.navigation.navigate('NativeModuleTest')}
+      />
+
+      <Button
         color="red"
         title="Log Out"
         onPress={() => {
