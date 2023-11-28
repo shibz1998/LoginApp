@@ -13,6 +13,7 @@ import {
   MapScreen,
   LocationTestScreen,
   NativeModuleTest,
+  SSLPinningScreen,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import UserContext from '../contexts/UserContext';
@@ -58,6 +59,10 @@ const Navigator = () => {
         <Stack.Screen
           name="DashboardScreen"
           component={DashboardScreen}></Stack.Screen>
+        <Stack.Screen
+          name="SSLPinningScreen"
+          component={SSLPinningScreen}></Stack.Screen>
+
         <Stack.Screen
           name="LocationTestScreen"
           component={LocationTestScreen}></Stack.Screen>

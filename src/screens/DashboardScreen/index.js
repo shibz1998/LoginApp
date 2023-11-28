@@ -101,6 +101,13 @@ const DashboardScreen = props => {
       />
 
       <Button
+        title="SSL Pinning"
+        onPress={() => {
+          props.navigation.navigate('SSLPinningScreen');
+        }}
+      />
+
+      <Button
         color="red"
         title="Log Out"
         onPress={() => {

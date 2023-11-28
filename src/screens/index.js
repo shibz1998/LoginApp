@@ -9,6 +9,7 @@ import RTKQueryScreen from './RTKQueryScreen';
 import MapScreen from './MapScreen';
 import LocationTestScreen from './LocationTestScreen';
 import NativeModuleTest from './NativeModuleTest';
+import SSLPinningScreen from './SSLPinningScreen';
 export {
   LoginScreen,
   DashboardScreen,
@@ -21,4 +22,5 @@ export {
   MapScreen,
   LocationTestScreen,
   NativeModuleTest,
+  SSLPinningScreen,
 };
