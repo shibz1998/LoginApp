@@ -24,23 +24,23 @@ public class CalendarModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void createCalendarEvent(String name, String location, Callback successCallback, Callback errorCallback) {
-//        Log.d("CalendarModule", "Create event called with name: " + name
+
+        //        Log.d("CalendarModule", "Create event called with name: " + name
 //                + " and location: " + location);
 
         try {
-            // Your synchronous logic here
             Log.d("CalendarModule", "Create event called with name: " + name + " and location: " + location);
 
-            // If the operation is successful, invoke the success callback
+
 
             String logMessage = "Event created with name: " + name + " and location: " + location;
             Log.d("CalendarModule", logMessage);
 
             successCallback.invoke(logMessage);
 
-//            successCallback.invoke("Event created successfully");
+//
         } catch (Exception e) {
-            // If there's an error, invoke the error callback
+
             errorCallback.invoke("Error creating event: " + e.getMessage());
         }
 
