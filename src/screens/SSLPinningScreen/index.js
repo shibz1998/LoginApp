@@ -9,7 +9,7 @@ initializeSslPinning({
     publicKeyHashes: [
       '5VLcahb6x4EvvFrCF2TePZulWqrLHS2jCg9Ywv6JHog=',
       '47DEdgffdgfdgfdgfdgfdgfdgdfgfdNMpJWZG3hSuFU=',
-      //   '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+      //   '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',   //Working Key
     ],
   },
 })
