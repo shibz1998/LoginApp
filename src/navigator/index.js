@@ -29,6 +29,7 @@ const Navigator = () => {
     const subscription = addSslPinningErrorListener(error => {
       // Triggered when an SSL pinning error occurs due to pin mismatch
       console.log(error.serverHostname);
+      console.log('error from nav', JSON.stringify(error, null, 2));
     });
     return () => {
       subscription.remove();
