@@ -1,6 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import axios from 'axios';
+import {initializeSslPinning} from 'react-native-ssl-public-key-pinning';
+
+initializeSslPinning({
+  'themoviedb.org': {
+    includeSubdomains: true,
+    publicKeyHashes: [
+      '5VLcahb6x4EvvFrCF2TePZulWqrLHS2jCg9Ywv6JHog=',
+      '47DEdgffdgfdgfdgfdgfdgfdgdfgfdNMpJWZG3hSuFU=',
+      //   '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+    ],
+  },
+})
+  .then(success => {
+    console.log(success);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 const SSLPinningScreen = () => {
   const [data, setData] = useState([]);
@@ -8,10 +26,21 @@ const SSLPinningScreen = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const apiKey =
+      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MzJjOTYzNjY5NzU3OGEwNTI5MWM4NWE5MWYyNmFmMSIsInN1YiI6IjY1NDM4MzM0ZTFhZDc5MDE0YmQyMGM3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.huykm4g9c8OAVMFXGW498rMtzZJT2XYKunRmZvinG70';
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`, // Include your actual API key in the Authorization header
+    };
+
     axios
-      .get('https://jsonplaceholder.typicode.com/users')
+      .get(
+        'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&limit=50',
+        {headers},
+      )
       .then(response => {
-        setData(response.data);
+        setData(response.data.results || []); // Use response.data.results
         setLoading(false);
       })
       .catch(err => console.log(err));
@@ -22,7 +51,20 @@ const SSLPinningScreen = () => {
     <View style={{alignItems: 'center'}}>
       <Text>SSL PINNING SCREEN</Text>
 
-      {!loading && data.map(user => <Text key={user.id}>{user.name}</Text>)}
+      {/* {!loading && data.map(item => <Text key={item.id}>{item.title}</Text>)} */}
+
+      <FlatList
+        data={data}
+        renderItem={({item, index}) => {
+          return (
+            <View style={{margin: 5, backgroundColor: 'lightblue'}}>
+              <Text style={{color: 'red'}}>{item.title}</Text>
+              <Text>{item.original_title}</Text>
+              <Text>{item.overview}</Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };

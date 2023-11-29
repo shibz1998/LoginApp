@@ -391,6 +391,10 @@ PODS:
     - React-Core
   - react-native-safe-area-context (4.7.4):
     - React-Core
+  - react-native-ssl-public-key-pinning (1.1.3):
+    - React-Core
+    - React-RCTNetwork
+    - TrustKit
   - React-NativeModulesApple (0.72.6):
     - React-callinvoker
     - React-Core
@@ -533,6 +537,7 @@ PODS:
   - SentryPrivate (8.15.2)
   - SocketRocket (0.6.1)
   - TOCropViewController (2.6.1)
+  - TrustKit (3.0.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -562,6 +567,7 @@ DEPENDENCIES:
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-ssl-public-key-pinning (from `../node_modules/react-native-ssl-public-key-pinning`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -610,6 +616,7 @@ SPEC REPOS:
     - SentryPrivate
     - SocketRocket
     - TOCropViewController
+    - TrustKit
 
 EXTERNAL SOURCES:
   boost:
@@ -663,6 +670,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-ssl-public-key-pinning:
+    :path: "../node_modules/react-native-ssl-public-key-pinning"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-perflogger:
@@ -762,6 +771,7 @@ SPEC CHECKSUMS:
   react-native-google-maps: 356b9d01da0920be13e4c4dc83673b30e8a22c16
   react-native-maps: f699e0753c22c4d5c3a44d03895b193a4dbca6c2
   react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
+  react-native-ssl-public-key-pinning: 7b5272efa81144da691d0a27bcd853e2df3d8cef
   React-NativeModulesApple: f8bb09486c8ba5b44a309123b1d1558faa90c13d
   React-perflogger: e3596db7e753f51766bceadc061936ef1472edc3
   React-RCTActionSheet: 17ab132c748b4471012abbcdcf5befe860660485
@@ -791,6 +801,7 @@ SPEC CHECKSUMS:
   SentryPrivate: b2f7996f37781080f04a946eb4e377ff63c64195
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
+  TrustKit: 7858ea59d0e226b1457b2e9cc8b95d77ab21d471
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 
 PODFILE CHECKSUM: 7ff57ba5f960f515ebdb27cfab116f925e6f2b60

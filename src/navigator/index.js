@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {View} from 'react-native';
+import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
@@ -23,6 +24,16 @@ const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
   const user = useSelector(state => state.user);
+
+  useEffect(() => {
+    const subscription = addSslPinningErrorListener(error => {
+      // Triggered when an SSL pinning error occurs due to pin mismatch
+      console.log(error.serverHostname);
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     NotificationHelper.initializeFCM();
