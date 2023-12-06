@@ -1,4 +1,4 @@
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Alert} from 'react-native';
 import React, {useEffect} from 'react';
 import LocationHelper from '../../helpers/LocationHelper';
 
@@ -13,6 +13,7 @@ export default function LocationTestScreen() {
         LocationHelper.fetchLocation(
           position => {
             console.log(position);
+            Alert.alert(JSON.stringify(position));
           },
           error => {
             console.log(error);
