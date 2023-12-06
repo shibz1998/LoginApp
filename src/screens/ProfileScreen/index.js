@@ -185,7 +185,7 @@ const ProfileScreen = props => {
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(formData => {
-            console.log(formData);
+            console.log('form Data' + formData);
           })}>
           <Text>Submit</Text>
         </TouchableOpacity>
@@ -202,7 +202,6 @@ const ProfileScreen = props => {
   );
 };
 
-export default ProfileScreen;
 
 const styles = StyleSheet.create({
   image: {
@@ -267,3 +266,78 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
+
+
+export default ProfileScreen;
+
+
+// import {View, Text, Button, Alert} from 'react-native';
+// import React from 'react';
+// import InputComponent from '../InputComponent';
+// import {useForm, Controller} from 'react-hook-form';
+// import * as yup from 'yup';
+// import {yupResolver} from '@hookform/resolvers/yup';
+
+// const schema = yup.object().shape({
+//   firstName: yup
+//     .string()
+//     .required('First name is required')
+//     .matches(/^[a-zA-Z\s]+$/, 'First name must contain only letters'),
+//   lastName: yup
+//     .string()
+//     .required('Last name is required')
+//     .matches(/^[a-zA-Z\s]+$/, 'Last name must contain only letters'),
+//   email: yup
+//     .string()
+//     .required('Email is required')
+//     .email('Invalid email')
+//     .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Invalid email'),
+// });
+
+// function ProfileScreen() {
+//   const {
+//     control,
+//     handleSubmit,
+//     formState: {errors},
+//   } = useForm({
+//     mode: 'all',
+//     resolver: yupResolver(schema),
+//     defaultValues: {
+//       firstName: '',
+//       lastName: '',
+//       email: '',
+//     },
+//   });
+
+//   return (
+//     <View style={{flex: 1}}>
+//       <InputComponent
+//         control={control}
+//         placeholder={'Enter First name'}
+//         name="firstName"
+//         error={errors?.firstName}
+//       />
+//       <InputComponent
+//         control={control}
+//         placeholder={'Enter Last name'}
+//         name="lastName"
+//         error={errors?.lastName}
+//       />
+//       <InputComponent
+//         control={control}
+//         placeholder={'Enter Email'}
+//         name="email"
+//         error={errors?.email}
+//       />
+
+//       <Button
+//         title={'Submit'}
+//         onPress={handleSubmit(formData => {
+//           Alert.alert('Form data: ' + JSON.stringify(formData.firstName));
+//         })}
+//       />
+//     </View>
+//   );
+// }
+
+
